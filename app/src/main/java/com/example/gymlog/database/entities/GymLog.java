@@ -7,6 +7,7 @@
 
 package com.example.gymlog.database.entities;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -85,14 +86,9 @@ public class GymLog {
         return Objects.hash(id, exercise, weight, reps, date);
     }
 
+    @NonNull
     @Override
     public String toString() {
-        return "GymLog{" +
-                "id=" + id +
-                ", exercise='" + exercise + '\'' +
-                ", weight=" + weight +
-                ", reps=" + reps +
-                ", date=" + date +
-                '}';
+        return exercise + '\n' + "Weight: " + weight + '\n' + "Reps: " + reps + '\n' + "Date: " + date.toString() + '\n' + "=-=-=-=-=-=-=" + '\n';
     }
 }
