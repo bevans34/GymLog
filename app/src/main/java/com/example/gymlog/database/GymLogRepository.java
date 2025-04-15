@@ -5,12 +5,12 @@
  * Description:
  */
 
-package com.example.gymlog.Database;
+package com.example.gymlog.database;
 
 import android.app.Application;
 import android.util.Log;
 
-import com.example.gymlog.Database.Entities.GymLog;
+import com.example.gymlog.database.entities.GymLog;
 import com.example.gymlog.MainActivity;
 
 import java.util.ArrayList;

@@ -5,7 +5,7 @@
  * Description:
  */
 
-package com.example.gymlog.Database;
+package com.example.gymlog.database;
 
 import android.content.Context;
 import android.util.Log;
@@ -16,7 +16,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import com.example.gymlog.Database.Entities.GymLog;
+import com.example.gymlog.database.entities.GymLog;
 import com.example.gymlog.MainActivity;
 
 import java.util.concurrent.ExecutorService;

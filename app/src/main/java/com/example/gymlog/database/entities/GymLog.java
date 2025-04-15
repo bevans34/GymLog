@@ -5,12 +5,12 @@
  * Description: This class acts as an instance of a GymLog database.
  */
 
-package com.example.gymlog.Database.Entities;
+package com.example.gymlog.database.entities;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.example.gymlog.Database.GymLogDatabase;
+import com.example.gymlog.database.GymLogDatabase;
 
 import java.time.LocalDate;
 import java.util.Objects;

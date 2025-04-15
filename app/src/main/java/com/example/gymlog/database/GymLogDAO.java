@@ -5,14 +5,14 @@
  * Description: This file represents the queries we will run in the database.
  */
 
-package com.example.gymlog.Database;
+package com.example.gymlog.database;
 
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-import com.example.gymlog.Database.Entities.GymLog;
+import com.example.gymlog.database.entities.GymLog;
 
 import java.util.ArrayList;
 
