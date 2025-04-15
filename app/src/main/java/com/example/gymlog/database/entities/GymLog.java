@@ -32,6 +32,17 @@ public class GymLog {
         this.date = LocalDateTime.now();
     }
 
+    @Override
+    public String toString() {
+        return "GymLog{" +
+                "id=" + id +
+                ", exercise='" + exercise + '\'' +
+                ", weight=" + weight +
+                ", reps=" + reps +
+                ", date=" + date +
+                '}';
+    }
+
     public LocalDateTime getDate() {
         return date;
     }

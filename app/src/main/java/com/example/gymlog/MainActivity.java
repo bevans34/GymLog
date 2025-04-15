@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -29,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        repository = new GymLogRepository(getApplication());
+        repository = GymLogRepository.getRepository(getApplication());
 
         binding.logDisplayTextView.setMovementMethod(new ScrollingMovementMethod());
 
@@ -71,5 +70,7 @@ public class MainActivity extends AppCompatActivity {
         newDisplay += currentInfo;
 
         binding.logDisplayTextView.setText(newDisplay);
+
+        Log.i(TAG, repository.getAllLogs().toString());
     }
 }
