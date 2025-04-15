@@ -32,17 +32,6 @@ public class GymLog {
         this.date = LocalDateTime.now();
     }
 
-    @Override
-    public String toString() {
-        return "GymLog{" +
-                "id=" + id +
-                ", exercise='" + exercise + '\'' +
-                ", weight=" + weight +
-                ", reps=" + reps +
-                ", date=" + date +
-                '}';
-    }
-
     public LocalDateTime getDate() {
         return date;
     }
@@ -94,5 +83,16 @@ public class GymLog {
     @Override
     public int hashCode() {
         return Objects.hash(id, exercise, weight, reps, date);
+    }
+
+    @Override
+    public String toString() {
+        return "GymLog{" +
+                "id=" + id +
+                ", exercise='" + exercise + '\'' +
+                ", weight=" + weight +
+                ", reps=" + reps +
+                ", date=" + date +
+                '}';
     }
 }
