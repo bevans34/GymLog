@@ -10,10 +10,12 @@ package com.example.gymlog.Database.Entities;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.example.gymlog.Database.GymLogDatabase;
+
 import java.time.LocalDate;
 import java.util.Objects;
 
-@Entity(tableName = "gymLog")
+@Entity(tableName = GymLogDatabase.GYMLOG_TABLE)
 public class GymLog {
     @PrimaryKey(autoGenerate = true)
     private int id;

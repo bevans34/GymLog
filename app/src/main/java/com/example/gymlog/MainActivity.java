@@ -13,9 +13,8 @@ import com.example.gymlog.databinding.ActivityMainBinding;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
+    public static final String TAG = "GymLog";
     ActivityMainBinding binding;
-
-    private static final String TAG = "GymLog";
 
     String mExercise = "";
     double mWeight = 0.0;
@@ -56,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateDisplay() {
         String currentInfo = binding.logDisplayTextView.getText().toString();
+        Log.d(TAG, "current info:" + currentInfo);
         String newDisplay = String.format(Locale.US, "Exercise: %s%nWeight: %.2f%nReps: %s%n=-=-=-=%n", mExercise,mWeight,mReps);
         newDisplay += currentInfo;
 
