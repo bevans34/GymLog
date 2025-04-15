@@ -8,6 +8,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.gymlog.database.GymLogRepository;
+import com.example.gymlog.database.entities.GymLog;
 import com.example.gymlog.databinding.ActivityMainBinding;
 
 import java.util.Locale;
@@ -15,6 +17,7 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "GymLog";
     ActivityMainBinding binding;
+    private GymLogRepository repository;
 
     String mExercise = "";
     double mWeight = 0.0;
@@ -26,36 +29,44 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        repository = new GymLogRepository(getApplication());
+
         binding.logDisplayTextView.setMovementMethod(new ScrollingMovementMethod());
 
         binding.logButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getInformationFromDisplay();
+                insertGymLogRecord();
                 updateDisplay();
             }
         });
     }
 
     private void getInformationFromDisplay() {
-        mExercise = binding.exerciseInputEditText.getText().toString();
+        this.mExercise = binding.exerciseInputEditText.getText().toString();
 
         try {
-            mWeight = Double.parseDouble(binding.weightInputEditText.getText().toString());
+            this.mWeight = Double.parseDouble(binding.weightInputEditText.getText().toString());
         } catch (NumberFormatException e) {
             Log.d(TAG, "Error reading value from Weight edit text.");
         }
 
         try {
-            mReps = Integer.parseInt(binding.repsInputEditText.getText().toString());
+            this.mReps = Integer.parseInt(binding.repsInputEditText.getText().toString());
         } catch (NumberFormatException e) {
             Log.d(TAG, "Error reading value from Reps edit text.");
         }
     }
 
+    private void insertGymLogRecord() {
+        GymLog gymLog = new GymLog(this.mExercise, this.mWeight, this.mReps);
+        repository.insertGymLog(gymLog);
+    }
+
     private void updateDisplay() {
         String currentInfo = binding.logDisplayTextView.getText().toString();
-        Log.d(TAG, "current info:" + currentInfo);
+        Log.d(TAG, "current info: " + currentInfo);
         String newDisplay = String.format(Locale.US, "Exercise: %s%nWeight: %.2f%nReps: %s%n=-=-=-=%n", mExercise,mWeight,mReps);
         newDisplay += currentInfo;
 
