@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     String mExercise = "";
     double mWeight = 0.0;
     int mReps = 0;
+    int loggedInUserId = -1; // TODO: Add login information
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        GymLog gymLog = new GymLog(this.mExercise, this.mWeight, this.mReps);
+        GymLog gymLog = new GymLog(this.mExercise, this.mWeight, this.mReps, this.loggedInUserId);
         repository.insertGymLog(gymLog);
     }
 
