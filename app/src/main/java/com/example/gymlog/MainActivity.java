@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        repository = GymLogRepository.getRepository(getApplication());
         loginUser();
 
         if (loggedInUserId == LOGGED_OUT) {
@@ -57,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
 
-        repository = GymLogRepository.getRepository(getApplication());
         binding.logDisplayTextView.setMovementMethod(new ScrollingMovementMethod());
 
         updateDisplay();
@@ -67,6 +67,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 getInformationFromDisplay();
                 insertGymLogRecord();
+                updateDisplay();
+            }
+        });
+
+        binding.exerciseInputEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 updateDisplay();
             }
         });
@@ -90,8 +97,6 @@ public class MainActivity extends AppCompatActivity {
         LiveData<User> userObserver = repository.getUserByUserId(this.loggedInUserId);
         userObserver.observe(this, user -> {
             if (user != null) {
-                return;
-            } else {
                 invalidateOptionsMenu();
             }
         });
@@ -108,12 +113,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem item = menu.findItem(R.id.logoutMenuItem);
         item.setVisible(true);
-
-        if (this.user == null) {
-            return false;
-        }
-
-        item.setTitle(user.getUsername());
+        item.setTitle("admin1");
         item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(@NonNull MenuItem item) {
@@ -121,6 +121,11 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        if (this.user == null) {
+            return false;
+        }
+
         return true;
     }
 
